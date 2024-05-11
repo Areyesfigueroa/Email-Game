@@ -1,0 +1,34 @@
+{
+    "name": "PlayerControls",
+    "maps": [
+        {
+            "name": "BaseSwiping",
+            "id": "b79ee47d-70db-4961-9ca1-d1d692f16757",
+            "actions": [
+                {
+                    "name": "Swipe",
+                    "type": "Button",
+                    "id": "80ebaa83-fd31-48a5-80e6-85103c3a1d66",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dc438a8b-5f94-4f63-a074-36b09b6122e1",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Swipe",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
