@@ -55,7 +55,6 @@ public class DragAndDrop : MonoBehaviour
     private IEnumerator DragUpdate(GameObject pressedObject)
     {
         // Calculate the inital touch so that it stays in place until dragged
-        Debug.Log(SwipeDetection.instance.Position.x);
         Vector2 prevTouchCoord = SwipeDetection.instance.Position;
 
         Vector2 initEmailPos = pressedObject.transform.position;
@@ -68,7 +67,7 @@ public class DragAndDrop : MonoBehaviour
         Vector2 destinationPos = new Vector2(destinationPosX, initEmailPos.y);
 
 
-        while (SwipeDetection.instance.PressValue != 0) {
+        while (SwipeDetection.instance.PressValue != 0 && pressedObject != null) {
 
             // Check if the email is more than halfway out of the screen view
             float currEmailPosX = pressedObject.transform.position.x;
@@ -112,10 +111,11 @@ public class DragAndDrop : MonoBehaviour
 
     private void RemoveEmail()
     {
-        Debug.Log("Remove Email: " + selectedEmail);
         if (selectedEmail != null)
         {
+            Debug.Log("Remove Email: " + selectedEmail);
             Destroy(selectedEmail);
+            selectedEmail = null;
         }
     }
 }
