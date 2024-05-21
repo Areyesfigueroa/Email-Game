@@ -22,6 +22,7 @@ public class Email : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         int counter = transform.parent.GetComponent<EmailManager>().EmailCounter;
         // Temp, this is for showcase purposes. Illustrates how to dynamically change the email data.
         fromText.text = emails[0].Sender + counter;
@@ -33,7 +34,6 @@ public class Email : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 }
 
