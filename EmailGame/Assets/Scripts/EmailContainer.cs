@@ -9,45 +9,42 @@ public class EmailManager : MonoBehaviour
     public GameObject emailPrefab;
     private readonly int MAX_EMAILS_COUNT = 7; // Max number of emails that can be shown on screen.
 
+    private readonly int instantiateTimerSec = 2;
     private int emailCounter = 0;
     public int EmailCounter { get { return emailCounter; } }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine(InstantiateOverTime(3));
-    }
+    private bool isCoroutineRunning = false;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (transform.childCount < MAX_EMAILS_COUNT && !isCoroutineRunning)
         {
-            Debug.Log("Testo");
-            InstantiateEmail();
+            Debug.Log("Initiate Coroutine");
+            StartCoroutine(InstantiateOverTime(instantiateTimerSec));
         }
     }
 
     private void InstantiateEmail()
     {
-        if (transform.childCount >= MAX_EMAILS_COUNT) return;
-
         GameObject emailObj = Instantiate(emailPrefab, transform.position, transform.rotation);
         emailObj.transform.SetParent(gameObject.transform, false);
 
         // Update email counter, testing purposes only
         emailCounter++;
-
     }
 
     private IEnumerator InstantiateOverTime(int seconds)
     {
         while (transform.childCount < MAX_EMAILS_COUNT)
         {
+            isCoroutineRunning = true;
+
             InstantiateEmail();
-            // Debug.Log(transform.childCount);
+
             yield return new WaitForSeconds(seconds);
         }
+
+        isCoroutineRunning = false;
         Debug.Log("Coroutine Ended");
     }
 }
